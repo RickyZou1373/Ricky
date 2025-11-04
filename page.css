@@ -1,0 +1,181 @@
+html,
+body {
+    margin: 0;
+    background-color: rgb(18, 21, 37);
+}
+
+
+
+.icons {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 2vw;
+
+    box-shadow: 0 0 25px #ce00f799;
+
+    transition: transform 0.3s, color 0.3s;
+
+}
+
+.icons:hover {
+    transform: translateY(-20px);
+
+    /* your highlight color */
+}
+
+.pfp {
+    max-width: 25vw;
+    box-shadow: 0 0 50px 1rem rgb(68, 0, 255);
+    padding: 2vw;
+    animation: pfpmove 4s ease-in-out infinite;
+
+}
+
+.social {
+    max-width: 8vw;
+}
+
+
+.MCIbox {
+    min-height: 600px;
+}
+
+.CLIPbox {
+    min-height: 600px;
+}
+
+.points {
+    margin: 2vw;
+}
+
+/* Default (unselected) tab text color */
+.nav-tabs .nav-link {
+    color: white;
+    /* normal text color */
+}
+
+/* Hover effect (optional) */
+.nav-tabs .nav-link:hover {
+    color: rgb(161, 178, 211);
+    /* light blue when hovering */
+}
+
+/* Active (selected) tab text color */
+.nav-tabs .nav-link.active {
+    color: rgb(157, 0, 248) !important;
+    /* purple highlight */
+    background-color: transparent;
+    /* keep background clean */
+    border-color: rgb(157, 0, 248) transparent transparent;
+    /* optional underline */
+}
+
+/* Make all carousel images consistent */
+.carousel-item img video {
+    width: 100%;
+    /* Always stretch full width of the carousel */
+    aspect-ratio: 16 / 9;
+    /* Keeps a consistent landscape shape */
+    object-fit: cover;
+    /* Crops instead of squishing */
+    border-radius: 3%;
+    /* Optional: rounded corners */
+}
+
+
+
+/* Make carousel slides have black background and fixed height */
+#carouselYRHAutoplay .carousel-item {
+    background: black;
+    /* bars will be black */
+    height: 400px;
+    /* pick a height you like */
+}
+
+
+/* Make images fit inside without cropping */
+#carouselYRHAutoplay .carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    /* show the whole image */
+    background: black;
+    /* in case image is transparent */
+    margin-top: -5px;
+}
+
+#carouselPiano .carousel-item {
+    background: black;
+    /* bars will be black */
+    height: 400px;
+    /* pick a height you like */
+}
+
+
+/* Make images fit inside without cropping */
+#carouselPiano .carousel-item video {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    /* show the whole image */
+    background: black;
+    /* in case image is transparent */
+    margin-top: -5px;
+}
+
+.social-container {
+    width: 60%;
+    height: auto;
+    background-color: rgb(48, 42, 107);
+    border-radius: 9999px;
+    border: 0.5vw solid rgb(0, 0, 0);
+}
+
+@keyframes pfpmove {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+        box-shadow: 0 0 50px 1rem rgb(68, 0, 255);
+    }
+
+    50% {
+        transform: translateY(-20px);
+        box-shadow: 0 0 50px 2rem rgb(68, 0, 255);
+    }
+
+}
+
+/* Mobile version */
+@media (max-width: 768px) {
+    .pfp {
+        max-width: 50vw;
+
+    }
+
+    .icons:hover {
+        transform: translateY(-10px);
+
+        /* your highlight color */
+    }
+
+    .social {
+        max-width: 10vw;
+    }
+
+    .MCIbox {
+        min-height: 500px;
+    }
+
+    .CLIPbox {
+        min-height: 500px;
+    }
+
+    #carouselExampleAutoplaying .carousel-item {
+        height: 250px;
+    }
+
+    .social-container {
+        border: 0.5vh solid rgb(0, 0, 0);
+    }
+}
