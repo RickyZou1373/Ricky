@@ -127,19 +127,19 @@
                             <div id="carouselYRHAutoplay" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner" style="border-radius: 3%">
                                     <div class="carousel-item active">
-                                        <img src="YRH1.png"  class="d-block w-100" alt="...">
+                                        <img src="YRH1.png" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img data-src="YRH2.png"  class="d-block w-100" alt="...">
+                                        <img data-src="YRH2.png" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img data-src="YRH3.png"  class="d-block w-100" alt="...">
+                                        <img data-src="YRH3.png" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img data-src="YRH4.png"  class="d-block w-100" alt="...">
+                                        <img data-src="YRH4.png" class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img data-src="YRH5.png"  class="d-block w-100" alt="...">
+                                        <img data-src="YRH5.png" class="d-block w-100" alt="...">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
@@ -221,11 +221,63 @@
             </div>
 
         </div>
-
-        <div class=" reveal col-12 col-md-12 d-flex justify-content-center align-items-center flex-column mx-md-0 mx-auto"
+        <!--big box at the bottom-->
+        <div class=" reveal col-12 col-md-12 d-flex justify-content-start align-items-center flex-column mx-md-0 mx-auto"
             style="min-height:400px; margin-top: 2rem; background-color:rgb(48, 42, 107); border-radius: 25px 25px 0 0; display: flex; flex-direction: column; justify-content: flex-end;">
+            <div class=" d-flex justify-content-center align-items-center mt-5 mb-3" style="width:90%; border-bottom: 0.2rem solid rgb(175, 201, 237);">
+                <h1 style="color: white;">Work Experience</h1>
+            </div>
 
+            <div class="w-100 d-flex justify-content-center align-item-center flex-wrap ">
+                <!--work experience box-->
+                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox">
 
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1  class="job" >
+                            <b>Chatime</b>, Tearista
+                            
+                            <h1 class="job">(September 2023 - June 2025)</h1>
+                            <ul class="description">
+                                <li >
+                                    Shaker
+                                </li>
+                                <li>
+                                    Prep
+
+                                </li>
+                                <li>
+                                    Cashier
+
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+                </div>
+                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 ">
+
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="job ">
+                          <b>  The Green Isle | 青屿治茶</b>, Tearista
+                            <h1 class="job">(June 2025 - September 2025)</h1>
+                       
+                         
+
+                            <ul class="description">
+                                <li>
+                                    Shaker
+                                </li>
+                                <li>
+                                    Prep
+                                </li>
+                                <li>
+                                    Cashier
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -234,7 +286,7 @@
             const reveals = document.querySelectorAll(".reveal");
 
             // smaller threshold for mobile
-            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.3;
+            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.25;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -273,25 +325,25 @@
         });
     </script>
     <script>
-    // load Hackathon images only when that tab is shown
-    const hackTab = document.getElementById('Hackathon_button');
-    hackTab.addEventListener('shown.bs.tab', () => {
-        document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
-            if (!img.src) {
-                img.src = img.dataset.src;
-            }
+        // load Hackathon images only when that tab is shown
+        const hackTab = document.getElementById('Hackathon_button');
+        hackTab.addEventListener('shown.bs.tab', () => {
+            document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+                if (!img.src) {
+                    img.src = img.dataset.src;
+                }
+            });
         });
-    });
 
-    // ✅ run after everything (CSS, images) is ready — better for mobile Safari
-    window.addEventListener('load', () => {
-        document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
-            if (!img.src) {
-                img.src = img.dataset.src;
-            }
+        // ✅ run after everything (CSS, images) is ready — better for mobile Safari
+        window.addEventListener('load', () => {
+            document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+                if (!img.src) {
+                    img.src = img.dataset.src;
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 
 </html>
