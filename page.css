@@ -2,8 +2,22 @@ html,
 body {
     margin: 0;
     background-color: rgb(18, 21, 37);
+    height: 100%;
+ 
+    overscroll-behavior: none;
+}
+/* Hidden by default */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 1.2s ease-out;
 }
 
+/* When the element is visible */
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 .icons {
@@ -37,13 +51,13 @@ body {
 
 
 .MCIbox {
-    min-height: 600px;
+    min-height: 700px;
 
 }
 
 
 .CLIPbox {
-    min-height: 600px;
+    min-height: 700px;
 }
 
 .points {

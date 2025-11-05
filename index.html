@@ -12,18 +12,18 @@
 </head>
 
 <body>
-    <div class="container-fluid text-center my-5 px-1">
+    <div class="reveal container-fluid align-items-center justify-content-center text-center mt-5 px-1">
 
-        <img src="pfp.jpg" alt="Profile picture" class="img-fluid rounded-circle mx-auto d-block icons pfp"
+        <img src="pfp.jpg" alt="Profile picture" class="reveal img-fluid rounded-circle mx-auto d-block icons pfp"
             style=" border: 1rem solid rgba(51, 6, 109, 0.567);">
-        <div class="d-flex justify-content-center align-items-center my-5 mx-auto text-center"
+        <div class="reveal d-flex justify-content-center align-items-center my-5 mx-auto text-center"
             style="box-shadow: 0 0 25px #ce00f799; border-radius: 10%; width: 40%;">
             <h1 class=" my-3" style="color: white;">YO I'M RICKY</h1>
         </div>
 
 
 
-        <div class="mx-auto my-2 d-flex justify-content-center align-items-center gap-3 social-container">
+        <div class="reveal mx-auto my-2 d-flex justify-content-center align-items-center gap-3 social-container">
             <a href="https://www.instagram.com/hehe137312" target="_blank" rel="noopener noreferrer">
                 <img src=" insta.png" alt="" class="img-fluid rounded-circle mx-auto d-block icons social">
             </a>
@@ -41,7 +41,7 @@
             <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-md-0 mx-auto "
                 style="overflow: visible; ;">
 
-                <div class="col-12 w-100 d-flex justify-content-start align-items-center flex-column MCIbox mx-md-0 mx-auto"
+                <div class="col-12 w-100 d-flex justify-content-start align-items-center flex-column MCIbox reveal mx-md-0 mx-auto"
                     style="  background-color:rgb(48, 42, 107); border-radius: 25px; padding: 20px; border-radius: 5%; overflow: hidden;">
                     <h1 style="color: aliceblue;">EDUCATION</h1>
 
@@ -97,7 +97,7 @@
                 style="overflow: visible; ;">
 
                 <!--this is the tabs -->
-                <div class="w-100 justify-content-start align-items-center flex-column mx-md-0 mx-auto CLIPbox"
+                <div class="w-100 justify-content-start align-items-center flex-column mx-md-0 mx-auto reveal CLIPbox"
                     style="  background-color:rgb(48, 42, 107); border-radius: 25px; padding: 20px;border-radius: 5%; overflow: hidden; ">
                     <h2 style="color: white;">PIC AND VIDEOS</h2>
                     <ul class="nav nav-tabs" id="picTab" role="tablist">
@@ -217,8 +217,30 @@
 
         </div>
 
-    </div>
+        <div class=" reveal col-12 col-md-12 d-flex justify-content-center align-items-center flex-column mx-md-0 mx-auto"
+            style="min-height:20vh; margin-top: 2rem; background-color:rgb(48, 42, 107); border-radius: 25px 25px 0 0; display: flex; flex-direction: column; justify-content: flex-end;">
 
+
+        </div>
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const reveals = document.querySelectorAll(".reveal");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    } else {
+                        entry.target.classList.remove("show");
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            reveals.forEach(r => observer.observe(r));
+        });
+    </script>
 </body>
 
 </html>
