@@ -127,19 +127,19 @@
                             <div id="carouselYRHAutoplay" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner" style="border-radius: 3%">
                                     <div class="carousel-item active">
-                                        <img src="YRH1.png" loading="lazy" class="d-block w-100" alt="...">
+                                        <img data-src="YRH1.png"  class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="YRH2.png" loading="lazy" class="d-block w-100" alt="...">
+                                        <img data-src="YRH2.png"  class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="YRH3.png" loading="lazy" class="d-block w-100" alt="...">
+                                        <img data-src="YRH3.png"  class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="YRH4.png" loading="lazy" class="d-block w-100" alt="...">
+                                        <img data-src="YRH4.png"  class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="YRH5.png" loading="lazy" class="d-block w-100" alt="...">
+                                        <img data-src="YRH5.png"  class="d-block w-100" alt="...">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
@@ -234,7 +234,7 @@
             const reveals = document.querySelectorAll(".reveal");
 
             // smaller threshold for mobile
-            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.4;
+            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.3;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -272,6 +272,26 @@
             });
         });
     </script>
+    <script>
+    // load Hackathon images only when that tab is shown
+    const hackTab = document.getElementById('Hackathon_button');
+    hackTab.addEventListener('shown.bs.tab', () => {
+        document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+            if (!img.src) {
+                img.src = img.dataset.src;
+            }
+        });
+    });
+
+    // if Hackathon is the default *active* tab on page load, you can trigger it once:
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+            if (!img.src) {
+                img.src = img.dataset.src;
+            }
+        });
+    });
+</script>
 </body>
 
 </html>
