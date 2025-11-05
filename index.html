@@ -127,7 +127,7 @@
                             <div id="carouselYRHAutoplay" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner" style="border-radius: 3%">
                                     <div class="carousel-item active">
-                                        <img data-src="YRH1.png"  class="d-block w-100" alt="...">
+                                        <img src="YRH1.png"  class="d-block w-100" alt="...">
                                     </div>
                                     <div class="carousel-item">
                                         <img data-src="YRH2.png"  class="d-block w-100" alt="...">
@@ -283,8 +283,8 @@
         });
     });
 
-    // if Hackathon is the default *active* tab on page load, you can trigger it once:
-    document.addEventListener('DOMContentLoaded', () => {
+    // ✅ run after everything (CSS, images) is ready — better for mobile Safari
+    window.addEventListener('load', () => {
         document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
             if (!img.src) {
                 img.src = img.dataset.src;
