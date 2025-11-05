@@ -87,7 +87,8 @@ body {
 }
 
 /* Make all carousel images consistent */
-.carousel-item img video {
+.carousel-item img,
+.carousel video {
     width: 100%;
     /* Always stretch full width of the carousel */
     aspect-ratio: 16 / 9;
