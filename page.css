@@ -161,11 +161,6 @@ body {
     position: relative;
 }
 
-/* Keep navigation arrows above video */
-#carouselPiano .carousel-control-prev,
-#carouselPiano .carousel-control-next {
-    z-index: 20;
-}
 
 .social-container {
     width: 60%;

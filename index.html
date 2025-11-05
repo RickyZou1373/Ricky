@@ -218,26 +218,7 @@
         </div>
 
     </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        // get or create the carousel instance and force-touch off
-        const pianoEl = document.getElementById('carouselPiano');
-        const pianoCarousel = bootstrap.Carousel.getOrCreateInstance(pianoEl, {
-          touch: false,
-          interval: false,
-          ride: false,
-          pause: false
-        });
 
-        // make sure iframes can actually receive taps
-        const frames = pianoEl.querySelectorAll('iframe');
-        frames.forEach((frame) => {
-          frame.style.pointerEvents = 'auto';
-          frame.style.position = 'relative';
-          frame.style.zIndex = '10';
-        });
-      });
-    </script>
 </body>
 
 </html>
