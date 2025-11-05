@@ -249,6 +249,8 @@ body {
 
     .bottomBox {
         border-bottom: 0.2rem solid rgb(175, 201, 237);
+        border-right: none;
+        margin-bottom:2vh;
     }
 
     .job {
