@@ -38,8 +38,9 @@ body {
 
 .MCIbox {
     min-height: 600px;
-    
+
 }
+
 
 .CLIPbox {
     min-height: 600px;
@@ -122,6 +123,48 @@ body {
     background: black;
     /* in case image is transparent */
     margin-top: -5px;
+}
+
+/* === FIX: make YouTube videos clickable & keep carousel buttons === */
+
+
+/* allow tapping YouTube video */
+#carouselPiano iframe {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    touch-action: manipulation;
+}
+
+/* make only inactive slides ignore touches, not the entire carousel */
+
+#carouselPiano .carousel-item.active {
+    pointer-events: auto;
+}
+
+/* ensure carousel controls stay above everything */
+#carouselPiano .carousel-control-prev,
+#carouselPiano .carousel-control-next {
+    z-index: 20;
+    pointer-events: auto;
+}
+
+/* Reliable mobile fix for YouTube iframes in Bootstrap carousel */
+#carouselPiano iframe {
+    width: 100%;
+    height: 400px;
+    pointer-events: auto;
+    /* allow tapping */
+    touch-action: manipulation;
+    /* treat tap as click, not scroll */
+    z-index: 10;
+    position: relative;
+}
+
+/* Keep navigation arrows above video */
+#carouselPiano .carousel-control-prev,
+#carouselPiano .carousel-control-next {
+    z-index: 20;
 }
 
 .social-container {
