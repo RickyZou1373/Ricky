@@ -232,12 +232,10 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const reveals = document.querySelectorAll(".reveal");
-            let thresholdvalue;
-            if (window.innerWidth < 768) {
-                thresholdvalue = 0.3;
-            } else {
-                thresholdvalue = 0.2;
-            }
+
+            // smaller threshold for mobile
+            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.4;
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -246,9 +244,21 @@
                         entry.target.classList.remove("show");
                     }
                 });
-            }, { threshold: thresholdvalue });
+            }, {
+                threshold: thresholdValue,
+                rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
+            });
 
-            reveals.forEach(r => observer.observe(r));
+            // observe all
+            reveals.forEach(el => observer.observe(el));
+
+            // 👇 force-check on load (in case it's already visible)
+            reveals.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add("show");
+                }
+            });
         });
     </script>
     <script>
