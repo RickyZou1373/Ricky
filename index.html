@@ -431,34 +431,37 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const reveals = document.querySelectorAll(".reveal");
 
-                // smaller threshold for mobile
-                var thresholdValue;
-
-                if (window.innerWidth < 768) {
-                    thresholdValue = 0.15;
-                } else if (window.innerHeight < 700) {
-                    thresholdValue = 0.1;
-                } else {
-                    thresholdValue = 0.18;
-                }
+                const isMobile = window.innerWidth < 768;
+                const thresholdValue = isMobile ? 0.1 : 0.18;
 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("show");
                         } else {
-                            entry.target.classList.remove("show");
+                            if (isMobile) {
+                                // mobile: be careful when removing
+                                const rect = entry.boundingClientRect;
+                                const vh = window.innerHeight;
+                                const farAbove = rect.bottom < 0;
+                                const farBelow = rect.top > vh + 80;
+                                if (farAbove || farBelow) {
+                                    entry.target.classList.remove("show");
+                                }
+                            } else {
+                                // desktop: original behavior
+                                entry.target.classList.remove("show");
+                            }
                         }
                     });
                 }, {
                     threshold: thresholdValue,
-                    rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
+                    rootMargin: "0px 0px -10% 0px"
                 });
 
-                // observe all
                 reveals.forEach(el => observer.observe(el));
 
-                // 👇 force-check on load (in case it's already visible)
+                // force-show if already in view
                 reveals.forEach(el => {
                     const rect = el.getBoundingClientRect();
                     if (rect.top < window.innerHeight && rect.bottom > 0) {
