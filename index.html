@@ -440,16 +440,19 @@
                             entry.target.classList.add("show");
                         } else {
                             if (isMobile) {
-                                // mobile: be careful when removing
+                                // mobile: allow re-hide, but only when it's clearly fully out
                                 const rect = entry.boundingClientRect;
                                 const vh = window.innerHeight;
-                                const farAbove = rect.bottom < 0;
-                                const farBelow = rect.top > vh + 80;
-                                if (farAbove || farBelow) {
+
+                                const fullyAbove = rect.bottom <= -20;      // gone above screen a bit
+                                const fullyBelow = rect.top >= vh + 20;     // gone below screen a bit
+
+                                // only then remove
+                                if (fullyAbove || fullyBelow) {
                                     entry.target.classList.remove("show");
                                 }
                             } else {
-                                // desktop: original behavior
+                                // desktop: free replays
                                 entry.target.classList.remove("show");
                             }
                         }
@@ -461,7 +464,7 @@
 
                 reveals.forEach(el => observer.observe(el));
 
-                // force-show if already in view
+                // show stuff that's already in view on load
                 reveals.forEach(el => {
                     const rect = el.getBoundingClientRect();
                     if (rect.top < window.innerHeight && rect.bottom > 0) {
