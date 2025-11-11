@@ -431,39 +431,26 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const reveals = document.querySelectorAll(".reveal");
 
-                const isMobile = window.innerWidth < 768;
-                const thresholdValue = isMobile ? 0.12 : 0.18; // mobile a bit easier to trigger
+                // smaller threshold for mobile
+                const thresholdValue = window.innerWidth < 768 ? 0.15 : 0.18;
 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("show");
                         } else {
-                            if (isMobile) {
-                                const rect = entry.boundingClientRect;
-                                const vh = window.innerHeight;
-
-                                // remove once it's mostly out of view
-                                const mostlyAbove = rect.bottom < vh * 0.03;  // scrolled up past it
-                                const mostlyBelow = rect.top > vh * 0.6;     // scrolled down past it
-
-                                if (mostlyAbove || mostlyBelow) {
-                                    entry.target.classList.remove("show");
-                                }
-                            } else {
-                                // desktop: original behavior
-                                entry.target.classList.remove("show");
-                            }
+                            entry.target.classList.remove("show");
                         }
                     });
                 }, {
                     threshold: thresholdValue,
-                    rootMargin: "0px 0px -10% 0px"
+                    rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
                 });
 
+                // observe all
                 reveals.forEach(el => observer.observe(el));
 
-                // show if already in view
+                // 👇 force-check on load (in case it's already visible)
                 reveals.forEach(el => {
                     const rect = el.getBoundingClientRect();
                     if (rect.top < window.innerHeight && rect.bottom > 0) {
