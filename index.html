@@ -290,21 +290,21 @@
 
                     <ul style="color: aliceblue; text-align: left; margin: 0 ;">
                         <h1 class="exp">
-                            <b>Middlefield Collegiate Institute</b>, Computer science tutor 
+                            <b>Middlefield Collegiate Institute</b>, Computer science tutor
 
                             <h1 class="exp">(September 2024 - December 2024)</h1>
                             <ul class="description">
                                 <li>
-                                    Tutored fellow students Computer science 
+                                    Tutored fellow students Computer science
                                 </li>
                                 <li>
-                                    Taught basic programming, algorithms 
+                                    Taught basic programming, algorithms
 
                                 </li>
                             </ul>
                         </h1>
                     </ul>
-                    
+
                 </div>
                 <div
                     class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 pb-5 RbottomBox">
@@ -325,7 +325,7 @@
                             </ul>
                         </h1>
                     </ul>
-                    
+
                 </div>
                 <div
                     class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox pb-5">
@@ -342,78 +342,118 @@
                             </ul>
                         </h1>
                     </ul>
-                    
+
                 </div>
-                 <div
-                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3  pb-3">
+                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3  pb-3">
+                </div>
+            </div>
 
+            <div class=" d-flex justify-content-center align-items-center mt-5 mb-3"
+                style="width:90%; border-bottom: 0.2rem double rgb(255, 255, 255);">
+                <h1 class="mb-3 pb-3" style="color: white;">Achievements/Awards</h1>
+            </div>
+            <div class="w-100 d-flex justify-content-center align-item-center flex-wrap ">
+                <!--achievments box-->
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox pb-5">
 
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="exp">
+                            <b> International Music Festival And Competitions</b>, Piano Competition
+
+                            <h1 class="exp">(August 2024)</h1>
+                            <ul class="description">
+                                <li>
+                                    Received Silver Award in the Piano Competition
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+
+                </div>
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 pb-5 RbottomBox">
+
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="exp">
+                            <b>Middlefield Collegiate Institute</b>, Computer Science Award 
+
+                            <h1 class="exp">(June 2025)</h1>
+                            <ul class="description">
+                                <li>
+                                    Received the Computer Science Award for outstanding performance in Grade 12U Computer Science
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+
+                </div>
+            </div>
         </div>
 
-    </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const reveals = document.querySelectorAll(".reveal");
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const reveals = document.querySelectorAll(".reveal");
 
-            // smaller threshold for mobile
-            const thresholdValue = window.innerWidth < 768 ? 0.15 : 0.2;
+                // smaller threshold for mobile
+                const thresholdValue = window.innerWidth < 768 ? 0.15 : 0.18;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                    } else {
-                        entry.target.classList.remove("show");
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("show");
+                        } else {
+                            entry.target.classList.remove("show");
+                        }
+                    });
+                }, {
+                    threshold: thresholdValue,
+                    rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
+                });
+
+                // observe all
+                reveals.forEach(el => observer.observe(el));
+
+                // 👇 force-check on load (in case it's already visible)
+                reveals.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add("show");
                     }
                 });
-            }, {
-                threshold: thresholdValue,
-                rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
+            });
+        </script>
+        <script>
+            // load YouTube only when Piano tab opened
+            const pianoTab = document.getElementById('Piano_button');
+            pianoTab.addEventListener('shown.bs.tab', () => {
+                document.querySelectorAll('#Piano iframe').forEach(frame => {
+                    if (!frame.src && frame.dataset.src) {
+                        frame.src = frame.dataset.src;
+                    }
+                });
+            });
+        </script>
+        <script>
+            // load Hackathon images only when that tab is shown
+            const hackTab = document.getElementById('Hackathon_button');
+            hackTab.addEventListener('shown.bs.tab', () => {
+                document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+                    if (!img.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
             });
 
-            // observe all
-            reveals.forEach(el => observer.observe(el));
-
-            // 👇 force-check on load (in case it's already visible)
-            reveals.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add("show");
-                }
+            // ✅ run after everything (CSS, images) is ready — better for mobile Safari
+            window.addEventListener('load', () => {
+                document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
+                    if (!img.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
             });
-        });
-    </script>
-    <script>
-        // load YouTube only when Piano tab opened
-        const pianoTab = document.getElementById('Piano_button');
-        pianoTab.addEventListener('shown.bs.tab', () => {
-            document.querySelectorAll('#Piano iframe').forEach(frame => {
-                if (!frame.src && frame.dataset.src) {
-                    frame.src = frame.dataset.src;
-                }
-            });
-        });
-    </script>
-    <script>
-        // load Hackathon images only when that tab is shown
-        const hackTab = document.getElementById('Hackathon_button');
-        hackTab.addEventListener('shown.bs.tab', () => {
-            document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
-                if (!img.src) {
-                    img.src = img.dataset.src;
-                }
-            });
-        });
-
-        // ✅ run after everything (CSS, images) is ready — better for mobile Safari
-        window.addEventListener('load', () => {
-            document.querySelectorAll('#Hackathon img[data-src]').forEach(img => {
-                if (!img.src) {
-                    img.src = img.dataset.src;
-                }
-            });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

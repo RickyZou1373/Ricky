@@ -229,7 +229,8 @@ body {
     }
 
     .social {
-        max-width: 10vw;
+        max-width: 15vw;
+        
     }
 
     .MCIbox {
@@ -245,6 +246,7 @@ body {
     }
 
     .social-container {
+        width: 20rem;
         border: 0.5vh solid rgb(0, 0, 0);
     }
 
