@@ -431,26 +431,70 @@
             document.addEventListener("DOMContentLoaded", () => {
                 const reveals = document.querySelectorAll(".reveal");
 
-                // smaller threshold for mobile
-                const thresholdValue = window.innerWidth < 768 ? 0.15 : 0.18;
+                const isMobile = window.innerWidth < 768;
+                const thresholdValue = isMobile ? 0.15 : 0.18;
+
+                // flag to ignore tiny mobile viewport jiggles
+                let ignoreRemovals = false;
+
+                // helper to watch for browser bar popping in/out
+                function setupViewportWatcher() {
+                    // use visualViewport if available (better on mobile)
+                    if (window.visualViewport) {
+                        let lastH = window.visualViewport.height;
+                        window.visualViewport.addEventListener("resize", () => {
+                            const newH = window.visualViewport.height;
+                            const diff = Math.abs(newH - lastH);
+
+                            // small change = probably browser chrome, not real scroll
+                            if (diff > 0 && diff < 180) {
+                                ignoreRemovals = true;
+                                // turn it off shortly after
+                                setTimeout(() => ignoreRemovals = false, 200);
+                            }
+                            lastH = newH;
+                        });
+                    } else {
+                        // fallback to window resize
+                        let lastH = window.innerHeight;
+                        window.addEventListener("resize", () => {
+                            const newH = window.innerHeight;
+                            const diff = Math.abs(newH - lastH);
+                            if (diff > 0 && diff < 180) {
+                                ignoreRemovals = true;
+                                setTimeout(() => ignoreRemovals = false, 200);
+                            }
+                            lastH = newH;
+                        });
+                    }
+                }
+
+                setupViewportWatcher();
 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add("show");
                         } else {
+                            // if mobile just jiggled because the search bar popped out, DON'T hide
+                            if (isMobile && ignoreRemovals) {
+                                return;
+                            }
+
+                            // normal remove (you said you want to keep original behavior)
                             entry.target.classList.remove("show");
                         }
                     });
                 }, {
                     threshold: thresholdValue,
-                    rootMargin: "0px 0px -10% 0px"   // reveal a bit before it's fully in view
+                    // keep your 70%-ish trigger if you want:
+                    rootMargin: "0px 0px -30% 0px"
                 });
 
                 // observe all
                 reveals.forEach(el => observer.observe(el));
 
-                // 👇 force-check on load (in case it's already visible)
+                // show if already in view on load
                 reveals.forEach(el => {
                     const rect = el.getBoundingClientRect();
                     if (rect.top < window.innerHeight && rect.bottom > 0) {
