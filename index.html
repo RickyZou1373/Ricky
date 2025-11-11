@@ -444,7 +444,7 @@
                                 const vh = window.innerHeight;
 
                                 // remove once it's mostly out of view
-                                const mostlyAbove = rect.bottom < vh * 0.25;  // scrolled up past it
+                                const mostlyAbove = rect.bottom < vh * 0.05;  // scrolled up past it
                                 const mostlyBelow = rect.top > vh * 0.85;     // scrolled down past it
 
                                 if (mostlyAbove || mostlyBelow) {
