@@ -356,7 +356,7 @@
             const reveals = document.querySelectorAll(".reveal");
 
             // smaller threshold for mobile
-            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.2;
+            const thresholdValue = window.innerWidth < 768 ? 0.15 : 0.2;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
