@@ -221,21 +221,23 @@
         <!--big box at the bottom-->
         <div class=" reveal col-12 col-md-12 d-flex justify-content-start align-items-center flex-column mx-md-0 mx-auto"
             style="min-height:400px; margin-top: 2rem; background-color:rgb(48, 42, 107); border-radius: 25px 25px 0 0; display: flex; flex-direction: column; justify-content: flex-end;">
-            <div class=" d-flex justify-content-center align-items-center mt-5 mb-3" style="width:90%; border-bottom: 0.2rem solid rgb(175, 201, 237);">
-                <h1 style="color: white;">Work Experience</h1>
+            <div class=" d-flex justify-content-center align-items-center mt-5 mb-3"
+                style="width:90%; border-bottom: 0.2rem double rgb(255, 255, 255);">
+                <h1 class="mb-3 pb-3" style="color: white;">Work Experience</h1>
             </div>
 
             <div class="w-100 d-flex justify-content-center align-item-center flex-wrap ">
                 <!--work experience box-->
-                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox">
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox pb-3">
 
                     <ul style="color: aliceblue; text-align: left; margin: 0 ;">
-                        <h1  class="job" >
+                        <h1 class="exp">
                             <b>Chatime</b>, Tearista
-                            
-                            <h1 class="job">(September 2023 - June 2025)</h1>
+
+                            <h1 class="exp">(September 2023 - June 2025)</h1>
                             <ul class="description">
-                                <li >
+                                <li>
                                     Shaker
                                 </li>
                                 <li>
@@ -250,14 +252,14 @@
                         </h1>
                     </ul>
                 </div>
-                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 ">
+                <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 pb-3 ">
 
                     <ul style="color: aliceblue; text-align: left; margin: 0 ;">
-                        <h1 class="job ">
-                          <b>  The Green Isle | 青屿治茶</b>, Tearista
-                            <h1 class="job">(June 2025 - September 2025)</h1>
-                       
-                         
+                        <h1 class="exp ">
+                            <b> The Green Isle | 青屿治茶</b>, Tearista
+                            <h1 class="exp">(June 2025 - September 2025)</h1>
+
+
 
                             <ul class="description">
                                 <li>
@@ -273,8 +275,79 @@
                         </h1>
                     </ul>
                 </div>
+
 
             </div>
+            <!--volunteer exp-->
+            <div class=" d-flex justify-content-center align-items-center mt-5 mb-3"
+                style="width:90%; border-bottom: 0.2rem double rgb(255, 255, 255);">
+                <h1 class="mb-3 pb-3" style="color: white;">Volunteer Experience</h1>
+            </div>
+            <div class="w-100 d-flex justify-content-center align-item-center flex-wrap ">
+                <!-- experience box-->
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox pb-5">
+
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="exp">
+                            <b>Middlefield Collegiate Institute</b>, Computer science tutor 
+
+                            <h1 class="exp">(September 2024 - December 2024)</h1>
+                            <ul class="description">
+                                <li>
+                                    Tutored fellow students Computer science 
+                                </li>
+                                <li>
+                                    Taught basic programming, algorithms 
+
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+                    
+                </div>
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 pb-5 RbottomBox">
+
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="exp">
+                            <b>Middlefield Collegiate Institute</b>, Choir Pianist
+
+                            <h1 class="exp">(September 2022 - July 2023)</h1>
+                            <ul class="description">
+                                <li>
+                                    Performed at feeder school tour with MCI choir
+                                </li>
+                                <li>
+                                    Performed with choir during winter concert
+
+                                </li>
+                            </ul>
+                        </h1>
+                    </ul>
+                    
+                </div>
+                <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3 bottomBox pb-5">
+
+                    <ul style="color: aliceblue; text-align: left; margin: 0 ;">
+                        <h1 class="exp">
+                            <b>Middlefield Collegiate Institute</b>, Math Tutor
+                            <h1 class="exp">(February 2023 - May 2023)</h1>
+                            <ul class="description">
+                                <li>
+                                    Helped a student to improve from a 70% to 80% average in functions
+                                </li>
+
+                            </ul>
+                        </h1>
+                    </ul>
+                    
+                </div>
+                 <div
+                    class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-3  pb-3">
+
+
         </div>
 
     </div>
@@ -283,7 +356,7 @@
             const reveals = document.querySelectorAll(".reveal");
 
             // smaller threshold for mobile
-            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.25;
+            const thresholdValue = window.innerWidth < 768 ? 0.2 : 0.2;
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

@@ -187,11 +187,12 @@ body {
 }
 
 .bottomBox {
-    border-right: 0.2rem solid rgb(175, 201, 237);
+    border-right: 0.2rem dashed rgb(175, 201, 237);
 }
 
-.job {
+.exp {
     font-size: 5vh;
+    
 }
 
 .description {
@@ -247,13 +248,14 @@ body {
         border: 0.5vh solid rgb(0, 0, 0);
     }
 
-    .bottomBox {
+    .bottomBox,
+    .RbottomBox {
         border-bottom: 0.2rem solid rgb(175, 201, 237);
         border-right: none;
         margin-bottom:2vh;
     }
 
-    .job {
+    .exp {
         font-size: 2vh;
     }
 
