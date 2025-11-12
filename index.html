@@ -432,7 +432,7 @@
                 const reveals = document.querySelectorAll(".reveal");
 
                 const isMobile = window.innerWidth < 768;
-                const thresholdValue = isMobile ? 0.15 : 0.18;
+                const thresholdValue = isMobile ? 0.20 : 0.18;
 
                 // flag to ignore tiny mobile viewport jiggles
                 let ignoreRemovals = false;
@@ -503,19 +503,28 @@
                 }, {
                     threshold: thresholdValue,
                     // keep your 70%-ish trigger if you want:
-                    rootMargin: "0px 0px -10% 0px"
+                    rootMargin: "0px 0px -30% 0px"
                 });
 
                 // observe all
                 reveals.forEach(el => observer.observe(el));
 
-                // show if already in view on load
-                reveals.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        el.classList.add("show");
-                    }
-                });
+                // robust initial reveal so first screen is visible without scrolling
+                const revealNow = () => {
+                    const vh = window.innerHeight;
+                    reveals.forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        // trigger zone = top 70% of screen
+                        if (rect.top < vh * 0.7 && rect.bottom > 0) {
+                            el.classList.add("show");
+                        }
+                    });
+                };
+
+                // run at DOM ready, next paint, and after full load (covers mobile layout shifts)
+                revealNow();
+                requestAnimationFrame(() => requestAnimationFrame(revealNow));
+                window.addEventListener('load', revealNow);
             });
         </script>
         <script>
