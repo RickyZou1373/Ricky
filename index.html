@@ -436,6 +436,7 @@
 
                 // flag to ignore tiny mobile viewport jiggles
                 let ignoreRemovals = false;
+                let lastScrollY = window.scrollY;
 
                 // helper to watch for browser bar popping in/out
                 function setupViewportWatcher() {
@@ -445,14 +446,14 @@
                         window.visualViewport.addEventListener("resize", () => {
                             const newH = window.visualViewport.height;
                             const diff = Math.abs(newH - lastH);
-
-                            // small change = probably browser chrome, not real scroll
-                            if (diff > 0 && diff < 180) {
+                            const scrollDiff = Math.abs(window.scrollY - lastScrollY);
+                            // small height change + tiny scroll = probably browser bar
+                            if (diff > 0 && diff < 220 && scrollDiff < 8) {
                                 ignoreRemovals = true;
-                                // turn it off shortly after
-                                setTimeout(() => ignoreRemovals = false, 200);
+                                setTimeout(() => ignoreRemovals = false, 500);
                             }
                             lastH = newH;
+                            lastScrollY = window.scrollY;
                         });
                     } else {
                         // fallback to window resize
@@ -460,11 +461,13 @@
                         window.addEventListener("resize", () => {
                             const newH = window.innerHeight;
                             const diff = Math.abs(newH - lastH);
-                            if (diff > 0 && diff < 180) {
+                            const scrollDiff = Math.abs(window.scrollY - lastScrollY);
+                            if (diff > 0 && diff < 220 && scrollDiff < 8) {
                                 ignoreRemovals = true;
-                                setTimeout(() => ignoreRemovals = false, 200);
+                                setTimeout(() => ignoreRemovals = false, 500);
                             }
                             lastH = newH;
+                            lastScrollY = window.scrollY;
                         });
                     }
                 }
@@ -480,7 +483,6 @@
                             if (isMobile && ignoreRemovals) {
                                 return;
                             }
-
                             // normal remove (you said you want to keep original behavior)
                             entry.target.classList.remove("show");
                         }
