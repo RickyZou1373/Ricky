@@ -18,7 +18,7 @@
 
 
         <img src="pfp.webp" alt="Profile picture" width="400" height="400" fetchpriority="high"
-            class="reveal img-fluid rounded-circle mx-auto d-block icons pfp"
+            class="reveal img-fluid rounded-circle mx-auto d-block icons pfp mt-5"
             style="border: 1rem solid rgba(51, 6, 109, 0.567);">
 
         <div class="reveal d-flex justify-content-center align-items-center my-5 mx-auto text-center"
@@ -46,7 +46,7 @@
             <div class="col-11 col-md-5 d-flex justify-content-start align-items-center flex-column mx-md-0 mx-auto "
                 style="overflow: visible; ;">
 
-                <div class="col-12 w-100 d-flex justify-content-start align-items-center flex-column MCIbox reveal mx-md-0 mx-auto"
+                <div id="educationSection" class="col-12 w-100 d-flex justify-content-start align-items-center flex-column MCIbox reveal mx-md-0 mx-auto"
                     style="  background-color:rgb(48, 42, 107); border-radius: 25px; padding: 20px; border-radius: 5%; overflow: hidden;">
                     <h1 style="color: aliceblue;">EDUCATION</h1>
 
@@ -430,6 +430,7 @@
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 const reveals = document.querySelectorAll(".reveal");
+                const educationEl = document.getElementById('educationSection');
 
                 const isMobile = window.innerWidth < 768;
                 const thresholdValue = isMobile ? 0.20 : 0.18;
@@ -487,23 +488,37 @@
 
                 setupViewportWatcher();
 
+                // Helper to keep Education hidden when at the very top on mobile
+                function hideEducationAtTop() {
+                    if (isMobile && educationEl) {
+                        if (window.scrollY === 0) {
+                            educationEl.classList.remove('show');
+                        }
+                    }
+                }
+
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            entry.target.classList.add("show");
+                            // Keep EDUCATION hidden at absolute top on mobile
+                            if (isMobile && educationEl && entry.target === educationEl && window.scrollY === 0) {
+                                entry.target.classList.remove('show');
+                            } else {
+                                entry.target.classList.add('show');
+                            }
                         } else {
                             // if mobile just jiggled because the search bar popped out, DON'T hide
                             if (isMobile && ignoreRemovals) {
                                 return;
                             }
                             // normal remove (you said you want to keep original behavior)
-                            entry.target.classList.remove("show");
+                            entry.target.classList.remove('show');
                         }
                     });
                 }, {
                     threshold: thresholdValue,
                     // keep your 70%-ish trigger if you want:
-                    rootMargin: "0px 0px -30% 0px"
+                    rootMargin: "0px 0px -10% 0px"
                 });
 
                 // observe all
@@ -517,6 +532,9 @@
                         // trigger zone = top 70% of screen
                         if (rect.top < vh * 0.7 && rect.bottom > 0) {
                             el.classList.add("show");
+                            if (isMobile && educationEl && el === educationEl && window.scrollY === 0) {
+                                el.classList.remove('show');
+                            }
                         }
                     });
                 };
@@ -524,6 +542,8 @@
                 // run at DOM ready, next paint, and after full load (covers mobile layout shifts)
                 revealNow();
                 requestAnimationFrame(() => requestAnimationFrame(revealNow));
+                hideEducationAtTop();
+                window.addEventListener('scroll', hideEducationAtTop, { passive: true });
                 window.addEventListener('load', revealNow);
             });
         </script>
