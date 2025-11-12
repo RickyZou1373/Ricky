@@ -437,35 +437,48 @@
                 // flag to ignore tiny mobile viewport jiggles
                 let ignoreRemovals = false;
                 let lastScrollY = window.scrollY;
+                window.addEventListener('scroll', () => { lastScrollY = window.scrollY; }, { passive: true });
 
                 // helper to watch for browser bar popping in/out
                 function setupViewportWatcher() {
-                    // use visualViewport if available (better on mobile)
                     if (window.visualViewport) {
                         let lastH = window.visualViewport.height;
                         window.visualViewport.addEventListener("resize", () => {
                             const newH = window.visualViewport.height;
                             const diff = Math.abs(newH - lastH);
                             const scrollDiff = Math.abs(window.scrollY - lastScrollY);
-                            // small height change + tiny scroll = probably browser bar
-                            if (diff > 0 && diff < 220 && scrollDiff < 8) {
+
+                            // moderate height change + tiny scroll => browser chrome moved
+                            if (diff > 0 && diff < 400 && scrollDiff < 8) {
                                 ignoreRemovals = true;
-                                setTimeout(() => ignoreRemovals = false, 500);
+                                setTimeout(() => (ignoreRemovals = false), 800);
                             }
+                            // extra guard: at top and height shrank (URL bar appeared)
+                            if (window.scrollY === 0 && newH < lastH) {
+                                ignoreRemovals = true;
+                                setTimeout(() => (ignoreRemovals = false), 800);
+                            }
+
                             lastH = newH;
                             lastScrollY = window.scrollY;
                         });
                     } else {
-                        // fallback to window resize
+                        // fallback
                         let lastH = window.innerHeight;
                         window.addEventListener("resize", () => {
                             const newH = window.innerHeight;
                             const diff = Math.abs(newH - lastH);
                             const scrollDiff = Math.abs(window.scrollY - lastScrollY);
-                            if (diff > 0 && diff < 220 && scrollDiff < 8) {
+
+                            if (diff > 0 && diff < 400 && scrollDiff < 8) {
                                 ignoreRemovals = true;
-                                setTimeout(() => ignoreRemovals = false, 500);
+                                setTimeout(() => (ignoreRemovals = false), 800);
                             }
+                            if (window.scrollY === 0 && newH < lastH) {
+                                ignoreRemovals = true;
+                                setTimeout(() => (ignoreRemovals = false), 800);
+                            }
+
                             lastH = newH;
                             lastScrollY = window.scrollY;
                         });
