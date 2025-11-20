@@ -6,6 +6,10 @@ body {
 
     overscroll-behavior: none;
 }
+.inner_boxing{
+    background-color: #331568; 
+    border-radius: 4%;
+}
 .right{
     padding-left: 0;
 }
