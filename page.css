@@ -6,7 +6,9 @@ body {
 
     overscroll-behavior: none;
 }
-
+.right{
+    padding-left: 0;
+}
 /* Hidden by default */
 .reveal {
     opacity: 0;
@@ -188,6 +190,7 @@ body {
 
 .bottomBox {
     border-right: 0.2rem dashed rgb(175, 201, 237);
+    padding-right :2rem;
 }
 
 .exp {
@@ -255,6 +258,7 @@ body {
         border-bottom: 0.2rem solid rgb(175, 201, 237);
         border-right: none;
         margin-bottom:2vh;
+        padding-right: 0;
     }
 
     .exp {
