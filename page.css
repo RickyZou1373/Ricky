@@ -273,3 +273,28 @@ body {
         font-size: 2vh;
     }
 }
+
+/* Block landscape ONLY on small screens (mobile), leave PC alone */
+.landscape-blocker {
+    display: none;
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .landscape-blocker {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        background: black;
+        color: white;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 99999;
+        padding: 2rem;
+        font-size: 1.5rem;
+    }
+
+    body {
+        overflow: hidden;
+    }
+}
