@@ -1,0 +1,11 @@
+#board {
+    background-image: url("flappybirdbg.png");
+
+    width: 100%;
+    /* take full width of its container */
+    max-width: 360px;
+    /* never wider than the designed width */
+    height: auto;
+    /* scale height to match width */
+
+}

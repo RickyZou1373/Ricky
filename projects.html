@@ -12,13 +12,45 @@
 </head>
 
 <body>
-    <div class="reveal container-fluid align-items-center justify-content-center text-cetner my-5 px-1">
-        <a href="index.html">
-            <p style="color:white;"><<<--back to home page</p>
-        </a>
+    <div class="reveal container-fluid align-items-center justify-content-start text-center mt-5 px-1">
+        <div class="d-flex align-items-center justify-content-start">
+            <a href="index.html">
+                <p style="color:white;"><<<--back to home page</p>
+            </a>
+        </div>
+        <div class="accordion" id="myAccordion">
 
-       <header style="color:white">THIS PAGE IS UNDER CONSTRUCTION PLEASE HEAD BACK TO MAIN PAGE</header>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne">
+                        Games
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show d-flex justify-content-start "
+                    data-bs-parent="#myAccordion">
+                    <a href="flappybird/flappybird.html">
+                        <button class="accordion-body">
+                            Flappy Bird </button>
+                    </a>
+                </div>
+            </div>
 
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo">
+                        Hackathon
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#myAccordion">
+                    <div class="accordion-body">
+                        Content for section 2.
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
