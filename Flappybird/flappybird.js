@@ -67,7 +67,7 @@ function update(timestamp) {
     requestAnimationFrame(update);
 
     if (gameover == false) {
-        context.clearRect(0, 0, boardwidth, boardheight);
+        context.drawImage(backgroundIMG, 0, 0, boardwidth, boardheight);
         drawImageCentered(birdIMG, bird.x, bird.y, bird.w, bird.h);//draw bird more 
         gravity(delta);
         for (let i = 0; i < pipeArray.length; i++) {
@@ -75,8 +75,8 @@ function update(timestamp) {
             pipe.x -= 200 * delta;
             context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
             topbird = {
-                x: bird.x-bird.w/2,
-                y: bird.y-bird.h/2,
+                x: bird.x - bird.w / 2,
+                y: bird.y - bird.h / 2,
                 w: bird.w,
                 h: bird.h
             }
