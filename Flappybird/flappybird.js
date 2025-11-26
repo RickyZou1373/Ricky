@@ -31,7 +31,7 @@ let bird = {
 
 
 velocity = 0;
-const gaccel = 15; //pixels per second squared
+const gaccel = 900; //pixels per second squared
 const jumpv = -350;
 let gameover = false;
 
