@@ -72,7 +72,7 @@ function update(timestamp) {
         gravity(delta);
         for (let i = 0; i < pipeArray.length; i++) {
             let pipe = pipeArray[i];
-            pipe.x -= 200 * delta;
+            pipe.x -= pipeV * delta;
             context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
             topbird = {
                 x: bird.x - bird.w / 2,
@@ -134,7 +134,7 @@ function getDeltaTime(timestamp) {
 }
 
 function gravity(delta) {
-    velocity += gaccel
+    velocity += gaccel *delta;
     bird.y += velocity * delta;
 
 }
